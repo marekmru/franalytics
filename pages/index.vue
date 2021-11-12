@@ -1,21 +1,46 @@
+<script>
+import keywords from 'static/01.09.2021.json'
+
+export default {
+  data () {
+    return {
+      data: []
+    }
+  },
+  methods: {
+    async createkeywords () {
+      console.log('createkeywords')
+      // const item = keywords[0]
+      const data = await this.$axios.post('/.netlify/functions/post-keywords', { keyword: keywords[0] })
+      console.log(data, '-----------')
+      // this.mountains = await axios.get('https://api.nuxtjs.dev/mountains')
+    }
+
+  }
+}
+</script>
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
+  <v-row align="center" justify="center">
+    <v-col cols="12" md="6" sm="8">
       <v-card class="logo py-4 d-flex justify-center">
         <NuxtLogo />
         <VuetifyLogo />
+        <pre>{{ data }}</pre>
       </v-card>
       <v-card>
         <v-card-title class="headline">
           Welcome to the Vuetify + Nuxt.js template
         </v-card-title>
         <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
+          <p>
+            Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower
+            developers to create amazing applications.
+          </p>
           <p>
             For more information on Vuetify, check out the <a
               href="https://vuetifyjs.com"
-              target="_blank"
               rel="noopener noreferrer"
+              target="_blank"
             >
               documentation
             </a>.
@@ -23,8 +48,8 @@
           <p>
             If you have questions, please join the official <a
               href="https://chat.vuetifyjs.com/"
-              target="_blank"
               rel="noopener noreferrer"
+              target="_blank"
               title="chat"
             >
               discord
@@ -33,30 +58,33 @@
           <p>
             Find a bug? Report it on the github <a
               href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
               rel="noopener noreferrer"
+              target="_blank"
               title="contribute"
             >
               issue board
             </a>.
           </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
+          <p>
+            Thank you for developing with Vuetify and I look forward to bringing more exciting features in the
+            future.
+          </p>
           <div class="text-xs-right">
             <em><small>&mdash; John Leider</small></em>
           </div>
           <hr class="my-3">
           <a
             href="https://nuxtjs.org/"
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
           >
             Nuxt Documentation
           </a>
           <br>
           <a
             href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
           >
             Nuxt GitHub
           </a>
@@ -69,6 +97,12 @@
             to="/inspire"
           >
             Continue
+          </v-btn>
+          <v-btn
+            color="primary"
+            @click="createkeywords"
+          >
+            Ajax
           </v-btn>
         </v-card-actions>
       </v-card>
